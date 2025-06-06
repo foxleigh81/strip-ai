@@ -64,7 +64,14 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
       <div className="mx-auto max-w-4xl space-y-8">
         <header className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Strip AI</h1>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <img 
+              src="/strip-ai-logo-small.png" 
+              alt="Strip AI Logo" 
+              className="w-12 h-12"
+            />
+            <h1 className="text-4xl font-bold text-gray-800">Strip AI</h1>
+          </div>
           <p className="text-lg text-gray-600">
             Replace em-dash, en-dash, smart quotes, clean up whitespace, and optionally remove emoji
           </p>
@@ -198,7 +205,7 @@ function App() {
             className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
           >
             <img 
-              src="https://www.spacenectar.io/branding/logos/space-nectar-logo-full-colour-circle.png" 
+              src="/space-nectar-logo-small.png" 
               alt="SpaceNectar Logo" 
               className="w-5 h-5"
             />
