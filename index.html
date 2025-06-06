@@ -49,24 +49,7 @@
         }
       }
     </style>
-    
-    <!-- Preload non-critical CSS -->
-    <link rel="preload" href="./src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="./src/index.css"></noscript>
-    
-    <!-- CSS loading optimization script -->
-    <script>
-      // Polyfill for older browsers that don't support rel="preload"
-      (function() {
-        if (!window.CSS || !CSS.supports('(--custom: property)')) {
-          var link = document.querySelector('link[rel="preload"][as="style"]');
-          if (link) {
-            link.rel = 'stylesheet';
-          }
-        }
-      })();
-    </script>
-
+    <link rel="stylesheet" href="./src/index.css" />
     <link
       rel="icon"
       type="image/png"
@@ -89,6 +72,7 @@
     <!-- Google tag (gtag.js) -->
     <script
       async
+      defer
       src="https://www.googletagmanager.com/gtag/js?id=G-88H1DNLT4Y"
     ></script>
     <script>
