@@ -1,8 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    createHtmlPlugin({
+      minify: true,
+    }),
+  ],
   base: './', // Use relative paths for deployment flexibility
   resolve: {
     alias: {
@@ -37,4 +43,4 @@ export default defineConfig({
     // Enable source maps for production debugging but smaller inline maps
     sourcemap: false,
   },
-}); 
+});
