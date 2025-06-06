@@ -18,6 +18,9 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
+    // CSS handling optimizations
+    cssCodeSplit: true, // Split CSS into separate files for better caching
+    cssMinify: true,
     // Code splitting and chunk optimization
     rollupOptions: {
       output: {

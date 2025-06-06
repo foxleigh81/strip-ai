@@ -21,6 +21,8 @@
       body {
         margin: 0;
         font-family: system-ui, -apple-system, sans-serif;
+        background: hsl(154, 100%, 98%);
+        color: hsl(155, 5%, 15%);
       }
       .loading {
         display: flex;
@@ -29,8 +31,41 @@
         min-height: 100vh;
         font-size: 18px;
         color: #666;
+        background: linear-gradient(to bottom right, hsl(154, 100%, 98%), hsl(192, 85%, 98%));
+      }
+      /* Critical layout styles to prevent CLS */
+      .header-container { 
+        text-align: center; 
+        margin-bottom: 2rem; 
+      }
+      .main-grid { 
+        display: grid; 
+        gap: 1.5rem; 
+        grid-template-columns: 1fr; 
+      }
+      @media (min-width: 768px) {
+        .main-grid { 
+          grid-template-columns: 1fr 1fr; 
+        }
       }
     </style>
+    
+    <!-- Preload non-critical CSS -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    
+    <!-- CSS loading optimization script -->
+    <script>
+      // Polyfill for older browsers that don't support rel="preload"
+      (function() {
+        if (!window.CSS || !CSS.supports('(--custom: property)')) {
+          var link = document.querySelector('link[rel="preload"][as="style"]');
+          if (link) {
+            link.rel = 'stylesheet';
+          }
+        }
+      })();
+    </script>
 
     <link
       rel="icon"
