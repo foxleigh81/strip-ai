@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
+import packageJson from '../package.json'
 
 // Lazy load icons to reduce initial bundle size
 const Copy = lazy(() => import('lucide-react').then(mod => ({ default: mod.Copy })))
@@ -237,6 +238,10 @@ function App() {
               />
               Built by SpaceNectar
             </a>
+            <div className="text-xs text-gray-500 mt-2">
+              <p>© {new Date().getFullYear()} <a href="https://www.alexfoxleigh.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800 transition-colors">Alexander Foxleigh</a>. All rights reserved.</p>
+              <p>Strip AI v{packageJson.version} • Licensed under MIT</p>
+            </div>
           </div>
         </footer>
       </div>

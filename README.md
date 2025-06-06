@@ -40,6 +40,8 @@ A simple React application to replace em-dash (—), en-dash (–), smart quotes
 
 3. Open your browser and navigate to the provided localhost URL
 
+Note: The development server does not work as well as the build version as some items are injected at build time
+
 ## Usage
 
 1. Paste your text containing em-dashes (—), en-dashes (–), smart quotes (" "), extra whitespace, or emoji into the input textarea
