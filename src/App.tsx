@@ -66,7 +66,7 @@ function App() {
         <header className="text-center">
           <div className="flex items-center justify-center gap-3 mb-2">
             <img 
-              src="/strip-ai-logo-small.png" 
+              src="./strip-ai-logo-small.png" 
               alt="Strip AI Logo" 
               className="w-12 h-12"
             />
@@ -205,7 +205,7 @@ function App() {
             className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
           >
             <img 
-              src="/space-nectar-logo-small.png" 
+              src="./space-nectar-logo-small.png" 
               alt="SpaceNectar Logo" 
               className="w-5 h-5"
             />
