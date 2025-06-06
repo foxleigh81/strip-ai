@@ -198,19 +198,34 @@ function App() {
         </div>
         
         <footer className="text-center py-6 border-t border-gray-200/50">
-          <a 
-            href="https://spacenectar.io" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
-          >
-            <img 
-              src="./space-nectar-logo-small.png" 
-              alt="SpaceNectar Logo" 
-              className="w-5 h-5"
-            />
-            Built by SpaceNectar
-          </a>
+          <div className="flex flex-col items-center gap-4">
+            <a 
+              href="https://ko-fi.com/foxleigh81" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors text-sm font-medium"
+            >
+              <img 
+                src="./ko-fi-logo.webp" 
+                alt="Ko-fi Logo" 
+                style={{ width: '30px', height: '24px' }}
+              />
+              Support me on Ko-fi
+            </a>
+            <a 
+              href="https://spacenectar.io" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            >
+              <img 
+                src="./space-nectar-logo-small.png" 
+                alt="SpaceNectar Logo" 
+                className="w-5 h-5"
+              />
+              Built by SpaceNectar
+            </a>
+          </div>
         </footer>
       </div>
     </div>
