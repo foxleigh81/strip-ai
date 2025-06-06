@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 const Copy = lazy(() => import('lucide-react').then(mod => ({ default: mod.Copy })))
 const Wand2 = lazy(() => import('lucide-react').then(mod => ({ default: mod.Wand2 })))
 const RotateCcw = lazy(() => import('lucide-react').then(mod => ({ default: mod.RotateCcw })))
+const Github = lazy(() => import('lucide-react').then(mod => ({ default: mod.Github })))
 
 function App() {
   const [inputText, setInputText] = useState('')
@@ -211,6 +212,17 @@ function App() {
                 style={{ width: '30px', height: '24px' }}
               />
               Support me on Ko-fi
+            </a>
+            <a 
+              href="https://github.com/foxleigh81/strip-ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            >
+              <Suspense fallback={<div className="w-4 h-4 mr-2" />}>
+                <Github className="w-4 h-4" />
+              </Suspense>
+              View on GitHub
             </a>
             <a 
               href="https://spacenectar.io" 

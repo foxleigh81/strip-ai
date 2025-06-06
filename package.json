@@ -3,6 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": "https://github.com/foxleigh81/strip-ai",
+  "author": {
+    "name": "Alexander Foxleigh",
+    "email": "alex@alexfoxleigh.com",
+    "url": "https://www.alexfoxleigh.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
