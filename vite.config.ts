@@ -6,7 +6,7 @@ export default defineConfig({
   base: './', // Use relative paths for deployment flexibility
   resolve: {
     alias: {
-      "@": "/src",
+      '@': '/src',
     },
   },
   publicDir: 'public',
@@ -21,7 +21,7 @@ export default defineConfig({
     },
     // CSS handling optimizations
     cssCodeSplit: true, // Split CSS into separate files for better caching
-    cssMinify: true,
+    cssMinify: 'lightningcss',
     // Code splitting and chunk optimization
     rollupOptions: {
       output: {
@@ -37,4 +37,4 @@ export default defineConfig({
     // Enable source maps for production debugging but smaller inline maps
     sourcemap: false,
   },
-}) 
+}); 
