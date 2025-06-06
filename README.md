@@ -62,6 +62,8 @@ npm run build
 
 If you are using the docker image to self-host the application and you like it. I'd really appreciate you giving this repo a star 😘
 
+> **Note:** Docker images are automatically built and published to Docker Hub whenever a new release is created on GitHub. Images are available for both AMD64 and ARM64 architectures.
+
 ### Using Docker Hub Image
 
 The easiest way to self-host Strip AI is using the pre-built Docker image:
