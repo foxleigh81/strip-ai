@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "Strip AI - De-AI-fy your text",
   "repository": "https://github.com/foxleigh81/strip-ai",
   "author": {
     "name": "Alexander Foxleigh",

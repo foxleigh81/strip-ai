@@ -27,11 +27,13 @@ A simple React application to replace em-dash (—), en-dash (–), smart quotes
 ## Getting Started
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
 
 2. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -49,14 +51,60 @@ A simple React application to replace em-dash (—), en-dash (–), smart quotes
 ## Build
 
 To build for production:
+
 ```bash
 npm run build
+```
+
+## Docker Deployment
+
+### Using Docker Hub Image
+
+The easiest way to self-host Strip AI is using the pre-built Docker image:
+
+```bash
+# Pull and run the image directly
+docker run -d --name strip-ai -p 3000:80 foxleigh81/strip-ai:latest
+
+# Or use docker-compose (recommended)
+docker-compose up -d
+```
+
+The application will be available at `http://localhost:3000`
+
+### Building Your Own Image
+
+To build the Docker image locally:
+
+```bash
+# Build the image
+docker build -t strip-ai .
+
+# Run the container
+docker run -d --name strip-ai -p 3000:80 strip-ai
+```
+
+### Docker Compose
+
+The included `docker-compose.yml` file provides the easiest deployment method:
+
+```bash
+# Start the application
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the application
+docker-compose down
 ```
 
 ## Performance
 
 The app is optimized for mobile performance with:
+
 - Code splitting and lazy loading
 - Minified JavaScript with Terser
 - Service worker caching
 - Optimized bundle sizes
+- Efficient Docker image with nginx serving static assets

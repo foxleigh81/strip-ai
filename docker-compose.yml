@@ -1,0 +1,9 @@
+services:
+  strip-ai:
+    image: foxleigh81/strip-ai:latest
+    container_name: strip-ai
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production 
