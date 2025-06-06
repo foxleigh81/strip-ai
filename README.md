@@ -1,6 +1,22 @@
+<div align="center">
+
 # Strip AI
 
-A simple React application to replace em-dash (—), en-dash (–), smart quotes (" "), clean up whitespace, and optionally remove emoji.
+<img src="https://strip-ai.spacenectar.io/strip-ai-logo.png" alt="Strip AI Logo" width="100" height="100">
+
+**A simple React application to replace em-dash (—), en-dash (–), smart quotes (" "), clean up whitespace, and optionally remove emoji.**
+
+[![Docker Hub](https://img.shields.io/docker/pulls/foxleigh81/strip-ai?style=for-the-badge&logo=docker&logoColor=white&label=Docker%20Hub&color=2496ED)](https://hub.docker.com/r/foxleigh81/strip-ai)
+[![GitHub release](https://img.shields.io/github/v/release/foxleigh81/strip-ai?style=for-the-badge&logo=github&logoColor=white&color=181717)](https://github.com/foxleigh81/strip-ai/releases)
+[![License](https://img.shields.io/github/license/foxleigh81/strip-ai?style=for-the-badge&color=green)](LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/foxleigh81/strip-ai/docker-release.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Docker%20Build)](https://github.com/foxleigh81/strip-ai/actions)
+
+[![GitHub stars](https://img.shields.io/github/stars/foxleigh81/strip-ai?style=social)](https://github.com/foxleigh81/strip-ai/stargazers)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20me-FF5E5B?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/foxleigh81)
+
+---
+
+</div>
 
 ## Features
 
