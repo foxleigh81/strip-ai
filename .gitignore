@@ -86,42 +86,6 @@ out
 .nuxt
 dist
 
-# Gatsby files
-.cache/
-public
-
-# Vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
-
-# IDE and Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
 # OS generated files
 .DS_Store
 .DS_Store?
