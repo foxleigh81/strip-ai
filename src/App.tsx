@@ -66,7 +66,7 @@ function App() {
         <header className="text-center">
           <div className="flex items-center justify-center gap-3 mb-2">
             <img 
-              src="./strip-ai-logo-small.png" 
+              src="./strip-ai-logo.webp" 
               alt="Strip AI Logo" 
               className="w-12 h-12"
             />
