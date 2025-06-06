@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": "/src",
     },
   },
+  publicDir: 'public',
   build: {
     // Enable minification and compression
     minify: 'terser',
@@ -32,9 +32,5 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     // Enable source maps for production debugging but smaller inline maps
     sourcemap: false,
-  },
-  // Enable compression
-  server: {
-    compress: true,
   },
 }) 
