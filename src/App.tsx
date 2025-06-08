@@ -51,21 +51,16 @@ function App() {
       <div className="mx-auto max-w-4xl space-y-8">
         <header className="text-center relative">
           <div className="absolute top-0 right-0 flex items-center space-x-2 z-10">
-            <Label htmlFor="dark-mode-toggle" className="text-sm font-medium text-gray-600 dark:text-gray-300">
+            <Label
+              htmlFor="dark-mode-toggle"
+              className="text-sm font-medium text-gray-600 dark:text-gray-300"
+            >
               Dark mode
             </Label>
-            <Switch
-              id="dark-mode-toggle"
-              checked={isDarkMode}
-              onCheckedChange={toggleDarkMode}
-            />
+            <Switch id="dark-mode-toggle" checked={isDarkMode} onCheckedChange={toggleDarkMode} />
           </div>
           <div className="flex items-center justify-center gap-3 mb-2">
-            <img 
-              src="./strip-ai-logo.webp" 
-              alt="Strip AI Logo" 
-              className="w-12 h-12"
-            />
+            <img src="./strip-ai-logo.webp" alt="Strip AI Logo" className="w-12 h-12" />
             <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">Strip AI</h1>
           </div>
           <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -76,7 +71,10 @@ function App() {
         <div className="grid gap-6 md:grid-cols-2">
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="input-text" className="text-base font-semibold text-gray-800 dark:text-gray-100">
+              <Label
+                htmlFor="input-text"
+                className="text-base font-semibold text-gray-800 dark:text-gray-100"
+              >
                 Input Text
               </Label>
               <Textarea
@@ -88,32 +86,33 @@ function App() {
                 aria-describedby="input-help"
               />
               <p id="input-help" className="text-sm text-muted-foreground">
-                Paste text containing em-dashes (—), en-dashes (–), smart quotes, extra whitespace, or emoji that you want to process
+                Paste text containing em-dashes (—), en-dashes (–), smart quotes, extra whitespace,
+                or emoji that you want to process
               </p>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="remove-emoji" 
+                <Checkbox
+                  id="remove-emoji"
                   checked={removeEmoji}
-                  onCheckedChange={(checked) => setRemoveEmoji(checked === true)}
+                  onCheckedChange={checked => setRemoveEmoji(checked === true)}
                 />
-                <Label 
-                  htmlFor="remove-emoji" 
+                <Label
+                  htmlFor="remove-emoji"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-800 dark:text-gray-100"
                 >
                   Also remove emoji 🎉 😊 🚀
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="remove-section-breaks" 
+                <Checkbox
+                  id="remove-section-breaks"
                   checked={removeSectionBreaks}
-                  onCheckedChange={(checked) => setRemoveSectionBreaks(checked === true)}
+                  onCheckedChange={checked => setRemoveSectionBreaks(checked === true)}
                 />
-                <Label 
-                  htmlFor="remove-section-breaks" 
+                <Label
+                  htmlFor="remove-section-breaks"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-800 dark:text-gray-100"
                 >
                   Replace section breaks (⸻) with hyphens
@@ -140,13 +139,17 @@ function App() {
               </Button>
             </div>
             <p id="process-help" className="text-xs text-muted-foreground">
-              Click to replace dashes, smart quotes, clean up whitespace, and optionally remove emoji or section breaks
+              Click to replace dashes, smart quotes, clean up whitespace, and optionally remove
+              emoji or section breaks
             </p>
           </div>
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="output-text" className="text-base font-semibold text-gray-800 dark:text-gray-100">
+              <Label
+                htmlFor="output-text"
+                className="text-base font-semibold text-gray-800 dark:text-gray-100"
+              >
                 Output Text
               </Label>
               <Textarea
@@ -181,7 +184,9 @@ function App() {
         </div>
 
         <div className="rounded-lg bg-white/50 dark:bg-gray-800/50 p-6">
-          <h2 className="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-100">About Strip AI</h2>
+          <h2 className="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-100">
+            About Strip AI
+          </h2>
           <div className="grid gap-4 md:grid-cols-6 text-sm text-gray-600 dark:text-gray-300">
             <div>
               <h3 className="font-medium mb-1 text-gray-800 dark:text-gray-100">Em-dash (—)</h3>
@@ -200,8 +205,13 @@ function App() {
               <p>Three-em dashes (⸻) used for section breaks - optionally replaced with hyphens</p>
             </div>
             <div>
-              <h3 className="font-medium mb-1 text-gray-800 dark:text-gray-100">Whitespace Clean-up</h3>
-              <p>Trims leading/trailing spaces, reduces multiple spaces to single (preserves line breaks)</p>
+              <h3 className="font-medium mb-1 text-gray-800 dark:text-gray-100">
+                Whitespace Clean-up
+              </h3>
+              <p>
+                Trims leading/trailing spaces, reduces multiple spaces to single (preserves line
+                breaks)
+              </p>
             </div>
             <div>
               <h3 className="font-medium mb-1 text-gray-800 dark:text-gray-100">Emoji Removal</h3>
@@ -209,48 +219,85 @@ function App() {
             </div>
           </div>
         </div>
-        
+
         <footer className="text-center py-6 border-t border-gray-200/50 dark:border-gray-700/50">
           <div className="flex flex-col items-center gap-4">
-            <a 
-              href="https://ko-fi.com/foxleigh81" 
-              target="_blank" 
+            <a
+              href="https://ko-fi.com/foxleigh81"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg transition-colors text-sm font-medium"
             >
-              <img 
-                src="./ko-fi-logo.webp" 
-                alt="Ko-fi Logo" 
+              <img
+                src="./ko-fi-logo.webp"
+                alt="Ko-fi Logo"
                 style={{ width: '30px', height: '24px' }}
               />
               Support me on Ko-fi
             </a>
-            <a 
-              href="https://github.com/foxleigh81/strip-ai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors"
-            >
-              <Suspense fallback={<div className="w-4 h-4 mr-2" />}>
-                <Github className="w-4 h-4" />
-              </Suspense>
-              View on GitHub
-            </a>
-            <a 
-              href="https://spacenectar.io" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors"
-            >
-              <img 
-                src="./space-nectar-logo-small.png" 
-                alt="SpaceNectar Logo" 
-                className="w-5 h-5"
-              />
-              Built by SpaceNectar
-            </a>
+                        <div className="flex items-center gap-6">
+              <a 
+                href="https://github.com/foxleigh81/strip-ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors"
+              >
+                <Suspense fallback={<div className="w-4 h-4 mr-2" />}>
+                  <Github className="w-4 h-4" />
+                </Suspense>
+                View on GitHub
+              </a>
+              <a 
+                href="https://spacenectar.io" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors"
+              >
+                             <svg
+                 width="20"
+                 height="20"
+                 viewBox="0 0 895 908"
+                 version="1.1"
+                 xmlns="http://www.w3.org/2000/svg"
+                 style={{
+                   fillRule: 'evenodd',
+                   clipRule: 'evenodd',
+                   strokeLinejoin: 'round',
+                   strokeMiterlimit: 2
+                 }}
+                 className="w-5 h-5"
+               >
+                 <g transform="matrix(2.66667,0,0,2.66667,-159.491,-153.147)">
+                   <path
+                     d="M386.6,96.47C340.42,99.95 286.11,140.76 261.23,164.6C260.52,163.67 259.72,162.82 258.87,162.01C265.22,156.44 270.7,149.62 274.09,141.76C278.72,131.03 280.17,119.08 279.58,107.4C279.36,103.05 272.84,103.04 273.06,107.4C273.59,117.81 272.58,128.71 268.46,138.33C265.26,145.81 260.04,152.34 253.92,157.53C256.26,145.52 259.48,133.03 260.71,130.81C267.21,119.01 265.22,108.1 256.74,98.12C249.9,90.07 246.53,84.82 253.34,80.43C262.89,74.27 252.54,57.43 250.01,57.43C247.48,57.43 258.09,80.36 235.39,80.04C234.53,79.62 227.54,82.15 227.54,82.15C227.54,82.15 220.55,79.62 219.69,80.04C197,80.36 206.6,57.43 204.07,57.43C201.54,57.43 192.19,74.27 201.74,80.43C208.55,84.82 205.18,90.08 198.34,98.12C189.86,108.09 187.87,119 194.37,130.81C195.59,133.03 198.82,145.53 201.16,157.53C195.04,152.34 189.83,145.81 186.62,138.33C182.5,128.71 181.5,117.81 182.02,107.4C182.24,103.04 175.72,103.05 175.5,107.4C174.91,119.08 176.36,131.02 180.99,141.76C184.38,149.63 189.86,156.44 196.21,162.01C195.36,162.82 194.56,163.67 193.85,164.6C168.97,140.76 114.66,99.95 68.48,96.47C48.32,94.95 68.63,148.84 76.09,160.75C84.49,174.17 121.55,179.51 154.48,181.51C127.94,183.63 98.87,191.2 87.08,214.71C87.08,214.71 80.61,223.68 88.96,222.32C96.95,221.02 105.11,223.6 113.15,224.26C121.24,224.93 129.37,225.21 137.49,225.1C144.92,225 152.81,225.04 159.95,222.61C160.61,222.39 161.26,222.11 161.9,221.84C167.47,220.55 172.82,218.93 177.78,217.16C177.53,217.46 177.28,217.77 177.03,218.07C172.2,224.03 166.5,229.48 162.78,236.32C158.66,243.91 158.29,252.49 156.93,260.89C155.65,268.83 153.69,276.81 149.65,283.75C145.76,290.43 139.89,295.95 132.53,298C128.48,299.13 130.2,305.67 134.26,304.54C148.76,300.5 157.49,286.5 161.25,272.2C163.35,264.22 163.69,255.96 165.46,247.93C167.23,239.96 171.93,234.17 177.09,228.24C179.89,225.02 182.46,221.55 185.37,218.44C187.87,215.77 190.8,213.48 194.34,213.09C194.43,214.37 194.44,215.64 194.28,216.91C183.38,231.86 178.72,248.15 177.82,267.68C178.29,273.75 178.67,280.51 179.35,287.24C181.73,310.89 187.54,333.52 201.34,352.83C210.87,366.17 224.76,376.5 226.24,394.97C226.34,396.19 227.53,397.65 227.53,397.65C227.53,397.65 228.72,396.19 228.82,394.97C230.29,376.5 244.18,366.17 253.72,352.83C267.52,333.52 273.33,310.89 275.71,287.24C276.39,280.51 276.77,273.75 277.24,267.68C276.33,248.14 271.68,231.86 260.78,216.91C260.62,215.64 260.63,214.36 260.72,213.09C264.26,213.49 267.2,215.77 269.7,218.44C272.61,221.55 275.18,225.02 277.98,228.24C283.14,234.16 287.84,239.95 289.61,247.93C291.39,255.96 291.72,264.22 293.82,272.2C297.58,286.5 306.31,300.5 320.81,304.54C324.88,305.67 326.59,299.13 322.54,298C315.18,295.95 309.31,290.44 305.42,283.75C301.38,276.81 299.42,268.82 298.14,260.89C296.78,252.49 296.42,243.9 292.29,236.32C288.57,229.48 282.87,224.03 278.04,218.07C277.79,217.77 277.54,217.46 277.29,217.16C282.26,218.93 287.6,220.54 293.17,221.84C293.82,222.11 294.46,222.38 295.12,222.61C302.26,225.04 310.15,225 317.58,225.1C325.7,225.21 333.82,224.93 341.92,224.26C349.96,223.59 358.11,221.02 366.11,222.32C374.45,223.67 367.99,214.71 367.99,214.71C356.2,191.2 327.13,183.63 300.59,181.51C333.52,179.52 370.58,174.17 378.98,160.75C386.44,148.83 406.75,94.94 386.59,96.47L386.6,96.47ZM227.28,155.84C227.37,155.84 227.46,155.85 227.55,155.85C227.64,155.85 227.73,155.84 227.82,155.84C242.17,155.84 253.81,167.93 253.81,182.85C253.81,197.77 242.18,209.86 227.82,209.86C227.73,209.86 227.64,209.85 227.55,209.85C227.46,209.85 227.37,209.86 227.28,209.86C212.93,209.86 201.29,197.77 201.29,182.85C201.29,167.93 212.92,155.84 227.28,155.84ZM252.73,226.93C251.99,229.05 249.68,229.11 247.85,229.14C241.09,229.26 234.32,229.19 227.56,229.17L227.55,229.17C220.78,229.18 214.02,229.25 207.26,229.14C205.43,229.11 203.12,229.05 202.38,226.93C201.64,224.79 203.55,223.34 204.74,221.89C208.44,217.39 212.42,214.32 218.79,216.71C221.63,217.78 224.59,218.33 227.55,218.35C230.51,218.33 233.48,217.78 236.31,216.71C242.68,214.31 246.66,217.39 250.36,221.89C251.55,223.34 253.47,224.79 252.72,226.93L252.73,226.93ZM232.18,364.87C230.62,366.39 229.08,367.15 227.55,367.24C226.02,367.14 224.49,366.39 222.92,364.87C219.44,361.48 212.64,357.8 214.35,353.92C216.43,349.22 223.66,353.63 227.36,352.24L227.74,352.24C231.44,353.62 238.67,349.21 240.75,353.92C242.46,357.8 235.66,361.48 232.18,364.87ZM257.55,323.66C256.1,328.4 253.64,331.19 248.58,331.96C241.57,333.03 234.56,332.55 227.55,332.9C220.54,332.55 213.53,333.03 206.52,331.96C201.46,331.19 199,328.4 197.55,323.66C195.99,318.55 197.05,316.36 202.62,316.76C210.91,317.36 219.23,317.79 227.54,317.98C235.85,317.79 244.17,317.36 252.46,316.76C258.03,316.35 259.09,318.55 257.53,323.66L257.55,323.66ZM256.32,297.19C246.75,298.07 237.2,299.48 227.55,298.72C217.9,299.48 208.35,298.07 198.78,297.19C192.41,296.6 188.96,290.79 190.86,284.57C191.6,282.16 193.06,281.63 195.17,281.88C205.96,283.14 216.75,283.73 227.55,283.72C238.34,283.73 249.14,283.14 259.93,281.88C262.04,281.63 263.5,282.16 264.24,284.57C266.14,290.79 262.7,296.6 256.32,297.19ZM263.94,256.41C264.79,262.21 260.63,262.83 256.78,263.1C247.08,263.8 237.34,264.22 227.62,264.76L227.46,264.76C217.74,264.22 208.01,263.79 198.3,263.1C194.45,262.83 190.29,262.2 191.14,256.41C191.87,251.31 192.43,246.21 199.75,247.27C209,248.61 218.26,249.31 227.53,249.33C236.8,249.31 246.07,248.62 255.31,247.27C262.63,246.2 263.19,251.3 263.92,256.41L263.94,256.41Z"
+                     className="fill-gray-800 dark:fill-white"
+                   />
+                   <path
+                     d="M216.97,186.25L207.07,176.22L220.77,174.16L227.15,160.72L227.55,159.7L227.95,160.72L234.33,174.16L248.02,176.22L238.13,186.25L240.52,200.76L227.95,193.89L227.55,193.64L227.15,193.89L214.58,200.76L216.97,186.25Z"
+                     className="fill-gray-800 dark:fill-white"
+                   />
+                   <path
+                     d="M217.48,196.77L227.15,191.49L227.55,191.24L227.95,191.49L237.62,196.77L235.77,185.58L243.59,177.66L232.78,176.02L227.95,165.84L227.55,164.82L227.15,165.84L222.32,176.02L211.51,177.66L219.33,185.58L217.48,196.77Z"
+                     style={{ fill: 'rgb(236,0,140)' }}
+                   />
+                 </g>
+               </svg>
+                              Built by SpaceNectar
+              </a>
+            </div>
             <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-              <p>© {new Date().getFullYear()} <a href="https://www.alexfoxleigh.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors">Alexander Foxleigh</a>. All rights reserved.</p>
+              <p>
+                © {new Date().getFullYear()}{' '}
+                <a
+                  href="https://www.alexfoxleigh.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors"
+                >
+                  Alexander Foxleigh
+                </a>
+                . All rights reserved.
+              </p>
               <p>Strip AI v{packageJson.version} • Licensed under MIT</p>
             </div>
           </div>
