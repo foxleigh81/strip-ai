@@ -1,7 +1,7 @@
 {
   "name": "strip-ai",
   "private": true,
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "description": "Strip AI - De-AI-fy your text",
   "repository": "https://github.com/foxleigh81/strip-ai",
