@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
+import { processText } from '@/lib/textProcessing'
+import { copyToClipboard } from '@/lib/clipboard'
 import packageJson from '../package.json'
 
 // Lazy load icons to reduce initial bundle size
@@ -17,50 +19,8 @@ function App() {
   const [copied, setCopied] = useState(false)
   const [removeEmoji, setRemoveEmoji] = useState(false)
 
-  const processText = useCallback(() => {
-    // Replace em-dash (—), en-dash (–), and three-em dash (⸻) with simple hyphen (-)
-    // Replace smart quotes (" ") with regular quotes (")
-    let result = inputText
-      .replace(/[—–⸻]/g, '-')
-      .replace(/[""]/g, '"')
-      .replace(/['']/g, "'");
-    
-    // Optionally remove emoji if checkbox is checked
-    if (removeEmoji) {
-      // Comprehensive emoji removal covering all Unicode ranges
-      result = result
-        // Remove emoji with skin tone modifiers and ZWJ sequences first
-        .replace(/[\u{1F3FB}-\u{1F3FF}]|[\u{200D}]/gu, '')
-        // Main emoji ranges with optional variation selectors
-        .replace(/[\u{1F600}-\u{1F64F}][\u{FE0E}\u{FE0F}]?/gu, '') // Emoticons
-        .replace(/[\u{1F300}-\u{1F5FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Misc Symbols and Pictographs
-        .replace(/[\u{1F680}-\u{1F6FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Transport and Map
-        .replace(/[\u{1F700}-\u{1F77F}][\u{FE0E}\u{FE0F}]?/gu, '') // Alchemical Symbols
-        .replace(/[\u{1F780}-\u{1F7FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Geometric Shapes Extended
-        .replace(/[\u{1F800}-\u{1F8FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Supplemental Arrows-C
-        .replace(/[\u{1F900}-\u{1F9FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Supplemental Symbols and Pictographs
-        .replace(/[\u{1FA00}-\u{1FA6F}][\u{FE0E}\u{FE0F}]?/gu, '') // Chess Symbols
-        .replace(/[\u{1FA70}-\u{1FAFF}][\u{FE0E}\u{FE0F}]?/gu, '') // Symbols and Pictographs Extended-A
-        .replace(/[\u{2600}-\u{26FF}][\u{FE0E}\u{FE0F}]?/gu, '')   // Miscellaneous Symbols
-        .replace(/[\u{2700}-\u{27BF}][\u{FE0E}\u{FE0F}]?/gu, '')   // Dingbats
-        .replace(/[\u{1F1E0}-\u{1F1FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Regional Indicator Symbols (flags)
-        // Keycap sequences (0️⃣-9️⃣, #️⃣, *️⃣)
-        .replace(/[0-9#*][\u{FE0F}]?[\u{20E3}]/gu, '')
-                 // Remove any remaining variation selectors and joiners
-         .replace(/[\u{FE0E}\u{FE0F}\u{200D}]/gu, '')
-         // Clean up multiple spaces that result from emoji removal (but preserve line breaks)
-         .replace(/[ \t]{2,}/g, ' ')
-         // Clean up spaces around punctuation that might be left
-         .replace(/[ \t]+([,.!?;:])/g, '$1')
-         .replace(/([,.!?;:])[ \t]+/g, '$1 ')
-    }
-    
-    // Automatically trim excessive whitespace (preserve line breaks)
-    result = result
-      .replace(/[ \t\u00A0\u2000-\u200B\u2028\u2029\u3000]+/g, ' ')  // Replace multiple spaces/tabs/unicode spaces with single space
-      .replace(/[ \t\u00A0\u2000-\u200B\u2028\u2029\u3000]*\n[ \t\u00A0\u2000-\u200B\u2028\u2029\u3000]*/g, '\n')  // Clean up spaces around line breaks
-      .trim()                   // Remove leading and trailing whitespace
-    
+  const handleProcessText = useCallback(() => {
+    const result = processText(inputText, removeEmoji)
     setOutputText(result)
   }, [inputText, removeEmoji])
 
@@ -68,13 +28,11 @@ function App() {
   const isProcessDisabled = useMemo(() => !inputText.trim(), [inputText])
   const isCopyDisabled = useMemo(() => !outputText, [outputText])
 
-  const copyToClipboard = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(outputText)
+  const handleCopyToClipboard = useCallback(async () => {
+    const success = await copyToClipboard(outputText)
+    if (success) {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy text: ', err)
     }
   }, [outputText])
 
@@ -138,7 +96,7 @@ function App() {
 
             <div className="flex gap-2">
               <Button
-                onClick={processText}
+                onClick={handleProcessText}
                 disabled={isProcessDisabled}
                 className="flex-1"
                 aria-describedby="process-help"
@@ -178,7 +136,7 @@ function App() {
             </div>
 
             <Button
-              onClick={copyToClipboard}
+              onClick={handleCopyToClipboard}
               disabled={isCopyDisabled}
               variant="secondary"
               className="w-full"

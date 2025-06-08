@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { createHtmlPlugin } from 'vite-plugin-html';
@@ -33,7 +34,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-label', '@radix-ui/react-slot'],
+          ui: ['@radix-ui/react-checkbox', '@radix-ui/react-label', '@radix-ui/react-slot'],
           utils: ['clsx', 'tailwind-merge', 'class-variance-authority'],
         },
       },
@@ -42,5 +43,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     // Enable source maps for production debugging but smaller inline maps
     sourcemap: false,
+  },
+  // Vitest configuration
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: [],
   },
 });
