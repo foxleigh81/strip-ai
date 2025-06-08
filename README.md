@@ -130,3 +130,10 @@ The app is optimized for mobile performance with:
 - Service worker caching
 - Optimized bundle sizes
 - Efficient Docker image with nginx serving static assets
+
+## Acknowledgements
+
+Special thanks to:
+
+- **[/u/batesyboy1970](https://reddit.com/u/batesyboy1970)** - For their valuable testing contributions and feedback
+
