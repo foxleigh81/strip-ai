@@ -28,9 +28,20 @@ export function removeEmoji(text: string): string {
     .replace(/[\u{1F900}-\u{1F9FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Supplemental Symbols and Pictographs
     .replace(/[\u{1FA00}-\u{1FA6F}][\u{FE0E}\u{FE0F}]?/gu, '') // Chess Symbols
     .replace(/[\u{1FA70}-\u{1FAFF}][\u{FE0E}\u{FE0F}]?/gu, '') // Symbols and Pictographs Extended-A
+    .replace(/[\u{1F000}-\u{1F02F}][\u{FE0E}\u{FE0F}]?/gu, '') // Mahjong Tiles
+    .replace(/[\u{1F0A0}-\u{1F0FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Playing Cards
+    .replace(/[\u{1F170}-\u{1F1FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Enclosed Alphanumeric Supplement
+    .replace(/[\u{1F200}-\u{1F2FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Enclosed CJK Letters and Months
     .replace(/[\u{2600}-\u{26FF}][\u{FE0E}\u{FE0F}]?/gu, '')   // Miscellaneous Symbols
     .replace(/[\u{2700}-\u{27BF}][\u{FE0E}\u{FE0F}]?/gu, '')   // Dingbats
-    .replace(/[\u{1F1E0}-\u{1F1FF}][\u{FE0E}\u{FE0F}]?/gu, '') // Regional Indicator Symbols (flags)
+    .replace(/[\u{2300}-\u{23FF}][\u{FE0E}\u{FE0F}]?/gu, '')   // Miscellaneous Technical (clocks, keyboards, etc.)
+    .replace(/[\u{2B00}-\u{2BFF}][\u{FE0E}\u{FE0F}]?/gu, '')   // Miscellaneous Symbols and Arrows
+    // Geometric Shapes - remove specific unwanted shapes but preserve ▶◀▪▫
+    .replace(/[\u{25FB}\u{25FC}\u{25FD}\u{25FE}][\u{FE0E}\u{FE0F}]?/gu, '') // ◻ ◼ ◽ ◾ (medium squares)
+    // CJK Symbols and Punctuation (selective removal)
+    .replace(/[\u{3030}\u{303D}\u{3297}-\u{3299}][\u{FE0E}\u{FE0F}]?/gu, '')
+    // Regional Indicator Symbols (flags)
+    .replace(/[\u{1F1E0}-\u{1F1FF}][\u{FE0E}\u{FE0F}]?/gu, '')
     // Keycap sequences (0️⃣-9️⃣, #️⃣, *️⃣)
     .replace(/[0-9#*][\u{FE0F}]?[\u{20E3}]/gu, '')
     // Remove any remaining variation selectors and joiners

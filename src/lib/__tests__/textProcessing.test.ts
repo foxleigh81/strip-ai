@@ -117,6 +117,12 @@ describe('removeEmoji', () => {
     const input = 'Just regular text here'
     expect(removeEmoji(input)).toBe(input)
   })
+
+  it('should remove technical symbols and arrows', () => {
+    const input = 'Time ⌛ ⏳ ⌚ ⏰ ⏱ ⏲ and squares ⬛ stars ⭐ keyboard ⌨'
+    const expected = 'Time and squares stars keyboard '
+    expect(removeEmoji(input)).toBe(expected)
+  })
 })
 
 describe('cleanupWhitespace', () => {
@@ -246,5 +252,50 @@ Paragraph 3`
     const input = '"Smart quotes" — em ⸻ section 🎉   extra spaces'
     const expected = '"Smart quotes" - em ⸻ section extra spaces'
     expect(processText(input, true, false)).toBe(expected)
+  })
+
+  it('should remove technical symbols in full text processing', () => {
+    const input = 'These symbols: ⬛ ⭐⌛ ⏳ ⌚ ⏰ ⏱ ⏲ ⌨ should be removed'
+    const expected = 'These symbols: should be removed'
+    expect(processText(input, true)).toBe(expected)
+  })
+
+  it('should remove additional emoji ranges (cards, mahjong, alphanumeric)', () => {
+    const input = 'Cards 🃏 🀄 CJK 〰 〽 Alphanumeric 🅰 🆎 🅱 🆑 🆒 squares ◼ ◻ ◾ ◽'
+    const expected = 'Cards CJK Alphanumeric squares '
+    expect(removeEmoji(input)).toBe(expected)
+  })
+
+  it('should preserve specific symbols while removing others', () => {
+    const input = 'Preserve: © ® ™ ↗ ↘ ↙ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ▶ ◀ ‼ ⁉ ▪ ▫ * # 0 1 2 3 4 5 6 7 8 9 Ⓜ ℹ Remove: 🃏 🀄 ◼ ◻'
+    const expected = 'Preserve: © ® ™ ↗ ↘ ↙ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ▶ ◀ ‼ ⁉ ▪ ▫ * # 0 1 2 3 4 5 6 7 8 9 Ⓜ ℹ Remove: '
+    expect(removeEmoji(input)).toBe(expected)
+  })
+
+  it('should remove CJK letters and months range', () => {
+    const input = 'CJK: 🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗ ㊙ 🈺 🈵 should go'
+    const expected = 'CJK: should go'
+    expect(removeEmoji(input)).toBe(expected)
+  })
+
+  it('should handle the complete emoji list from user request', () => {
+    const toRemove = '🃏 🀄 〰 〽 🅰 🆎 🅱 🆑 🆒 🆓 🆔 🆕 🆖 🅾 🆗 🅿 🆘 🆙 🆚 🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗ ㊙ 🈺 🈵 ◼ ◻ ◾ ◽'
+    const toPreserve = '© ® ™ ↗ ↘ ↙ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ▶ ◀ ‼ ⁉ ▪ ▫ * # 0 1 2 3 4 5 6 7 8 9 Ⓜ ℹ'
+    const input = `Remove: ${toRemove} Preserve: ${toPreserve}`
+    const result = processText(input, true)
+    
+    // Check that preserved symbols are still there
+    expect(result).toContain('© ® ™ ↗ ↘ ↙ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ▶ ◀ ‼ ⁉ ▪ ▫ * # 0 1 2 3 4 5 6 7 8 9 Ⓜ ℹ')
+    
+    // Check that removed symbols are gone
+    expect(result).not.toContain('🃏')
+    expect(result).not.toContain('🀄')
+    expect(result).not.toContain('〰')
+    expect(result).not.toContain('〽')
+    expect(result).not.toContain('🅰')
+    expect(result).not.toContain('◼')
+    expect(result).not.toContain('◻')
+    expect(result).not.toContain('◾')
+    expect(result).not.toContain('◽')
   })
 }) 
