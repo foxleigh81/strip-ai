@@ -19,10 +19,16 @@ describe('replaceDashesAndQuotes', () => {
     expect(replaceDashesAndQuotes(input)).toBe(expected)
   })
 
-  it('should replace three-em dash with hyphen', () => {
+  it('should replace three-em dash with hyphen when removeSectionBreaks is true', () => {
     const input = 'Section break ⸻ new section'
     const expected = 'Section break - new section'
-    expect(replaceDashesAndQuotes(input)).toBe(expected)
+    expect(replaceDashesAndQuotes(input, true)).toBe(expected)
+  })
+
+  it('should preserve three-em dash when removeSectionBreaks is false', () => {
+    const input = 'Section break ⸻ new section'
+    const expected = 'Section break ⸻ new section'
+    expect(replaceDashesAndQuotes(input, false)).toBe(expected)
   })
 
   it('should replace smart quotes with regular quotes', () => {
@@ -41,6 +47,18 @@ describe('replaceDashesAndQuotes', () => {
     const input = '"This is a test" — with em-dash – and en-dash'
     const expected = '"This is a test" - with em-dash - and en-dash'
     expect(replaceDashesAndQuotes(input)).toBe(expected)
+  })
+
+  it('should handle mixed dash types with section breaks enabled', () => {
+    const input = 'Em-dash — and en-dash – and three-em ⸻ together'
+    const expected = 'Em-dash - and en-dash - and three-em - together'
+    expect(replaceDashesAndQuotes(input, true)).toBe(expected)
+  })
+
+  it('should handle mixed dash types with section breaks disabled', () => {
+    const input = 'Em-dash — and en-dash – and three-em ⸻ together'
+    const expected = 'Em-dash - and en-dash - and three-em ⸻ together'
+    expect(replaceDashesAndQuotes(input, false)).toBe(expected)
   })
 
   it('should handle empty string', () => {
@@ -175,8 +193,8 @@ Line breaks should be preserved`
 Multiple spaces and emoji
 Line breaks should be preserved`
 
-    expect(processText(input, false)).toBe(expectedWithoutEmoji)
-    expect(processText(input, true)).toBe(expectedWithEmoji)
+    expect(processText(input, false, true)).toBe(expectedWithoutEmoji)
+    expect(processText(input, true, true)).toBe(expectedWithEmoji)
   })
 
   it('should handle empty string', () => {
@@ -204,5 +222,29 @@ Paragraph 2 - with en-dash
 Paragraph 3`
 
     expect(processText(input, true)).toBe(expected)
+  })
+
+  it('should handle section breaks when enabled', () => {
+    const input = '"Section 1" ⸻ "Section 2"'
+    const expected = '"Section 1" - "Section 2"'
+    expect(processText(input, false, true)).toBe(expected)
+  })
+
+  it('should preserve section breaks when disabled', () => {
+    const input = '"Section 1" ⸻ "Section 2"'
+    const expected = '"Section 1" ⸻ "Section 2"'
+    expect(processText(input, false, false)).toBe(expected)
+  })
+
+  it('should handle all features together with section breaks enabled', () => {
+    const input = '"Smart quotes" — em ⸻ section 🎉   extra spaces'
+    const expected = '"Smart quotes" - em - section extra spaces'
+    expect(processText(input, true, true)).toBe(expected)
+  })
+
+  it('should handle all features together with section breaks disabled', () => {
+    const input = '"Smart quotes" — em ⸻ section 🎉   extra spaces'
+    const expected = '"Smart quotes" - em ⸻ section extra spaces'
+    expect(processText(input, true, false)).toBe(expected)
   })
 }) 

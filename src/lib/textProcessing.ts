@@ -1,11 +1,12 @@
 /**
- * Replace em-dash (—), en-dash (–), three-em dash (⸻) with simple hyphen (-)
+ * Replace em-dash (—), en-dash (–), and optionally three-em dash (⸻) with simple hyphen (-)
  * Replace smart quotes (" ") with regular quotes (")
  * Replace smart apostrophes (' ') with regular apostrophes (')
  */
-export function replaceDashesAndQuotes(text: string): string {
+export function replaceDashesAndQuotes(text: string, removeSectionBreaks: boolean = true): string {
+  const dashPattern = removeSectionBreaks ? /[—–⸻]/g : /[—–]/g
   return text
-    .replace(/[—–⸻]/g, '-')
+    .replace(dashPattern, '-')
     .replace(/[""]/g, '"')
     .replace(/['']/g, "'")
 }
@@ -57,11 +58,15 @@ export function cleanupWhitespace(text: string): string {
 /**
  * Main text processing function that orchestrates all transformations
  */
-export function processText(text: string, shouldRemoveEmoji: boolean = false): string {
+export function processText(
+  text: string, 
+  shouldRemoveEmoji: boolean = false, 
+  shouldRemoveSectionBreaks: boolean = true
+): string {
   if (!text.trim()) return ''
   
   // Step 1: Replace dashes and quotes
-  let result = replaceDashesAndQuotes(text)
+  let result = replaceDashesAndQuotes(text, shouldRemoveSectionBreaks)
   
   // Step 2: Optionally remove emoji
   if (shouldRemoveEmoji) {

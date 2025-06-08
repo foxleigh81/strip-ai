@@ -18,11 +18,12 @@ function App() {
   const [outputText, setOutputText] = useState('')
   const [copied, setCopied] = useState(false)
   const [removeEmoji, setRemoveEmoji] = useState(false)
+  const [removeSectionBreaks, setRemoveSectionBreaks] = useState(true)
 
   const handleProcessText = useCallback(() => {
-    const result = processText(inputText, removeEmoji)
+    const result = processText(inputText, removeEmoji, removeSectionBreaks)
     setOutputText(result)
-  }, [inputText, removeEmoji])
+  }, [inputText, removeEmoji, removeSectionBreaks])
 
   // Memoize button disabled states
   const isProcessDisabled = useMemo(() => !inputText.trim(), [inputText])
@@ -92,6 +93,19 @@ function App() {
                   Also remove emoji 🎉 😊 🚀
                 </Label>
               </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="remove-section-breaks" 
+                  checked={removeSectionBreaks}
+                  onCheckedChange={(checked) => setRemoveSectionBreaks(checked === true)}
+                />
+                <Label 
+                  htmlFor="remove-section-breaks" 
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Replace section breaks (⸻) with hyphens
+                </Label>
+              </div>
             </div>
 
             <div className="flex gap-2">
@@ -113,7 +127,7 @@ function App() {
               </Button>
             </div>
             <p id="process-help" className="text-xs text-muted-foreground">
-              Click to replace dashes, smart quotes, clean up whitespace, and optionally remove emoji
+              Click to replace dashes, smart quotes, clean up whitespace, and optionally remove emoji or section breaks
             </p>
           </div>
 
@@ -155,7 +169,7 @@ function App() {
 
         <div className="rounded-lg bg-white/50 p-6">
           <h2 className="text-lg font-semibold mb-3 text-gray-800">About Strip AI</h2>
-          <div className="grid gap-4 md:grid-cols-5 text-sm text-gray-600">
+          <div className="grid gap-4 md:grid-cols-6 text-sm text-gray-600">
             <div>
               <h3 className="font-medium mb-1">Em-dash (—)</h3>
               <p>The longest dash, typically used for emphasis or to set off clauses</p>
@@ -167,6 +181,10 @@ function App() {
             <div>
               <h3 className="font-medium mb-1">Smart Quotes</h3>
               <p>Curved quotation marks (" ") often added by word processors</p>
+            </div>
+            <div>
+              <h3 className="font-medium mb-1">Section Breaks</h3>
+              <p>Three-em dashes (⸻) used for section breaks - optionally replaced with hyphens</p>
             </div>
             <div>
               <h3 className="font-medium mb-1">Whitespace Clean-up</h3>
